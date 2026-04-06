@@ -2,6 +2,7 @@ node_modules/
 .expo/
 .expo-shared/
 .firebase/
+firebase-debug.log
 dist/
 web-build/
 .vscode/
