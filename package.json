@@ -8,11 +8,14 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
+    "web:build": "expo export --platform web",
+    "web:deploy": "npm run web:build && npm exec firebase-tools deploy -- --only hosting",
     "check": "tsc --noEmit",
-    "update:configure": "npx eas-cli update:configure",
-    "update:android": "npx eas-cli update --branch production --message \"Android OTA update\"",
-    "firebase:login": "firebase login",
-    "firestore:deploy": "firebase deploy --only firestore:rules"
+    "update:configure": "npm exec eas-cli update:configure",
+    "update:android": "npm exec eas-cli update -- --branch production --message \"Android OTA update\"",
+    "firebase:login": "npm exec firebase-tools login",
+    "firestore:deploy": "npm exec firebase-tools deploy -- --only firestore:rules",
+    "hosting:deploy": "npm exec firebase-tools deploy -- --only hosting"
   },
   "dependencies": {
     "@expo-google-fonts/instrument-sans": "^0.4.2",

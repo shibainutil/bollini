@@ -1,6 +1,14 @@
 
 # Bollini
 
+Web testing deployment:
+
+1. Build the Expo web app with `npm run web:build`
+2. Deploy it to Firebase Hosting with `npm run hosting:deploy` or `npm run web:deploy`
+3. Share the Firebase Hosting URL with testers
+
+This project is already linked to Firebase project `bollini-c20e7`, so Firebase Hosting will publish under that project unless you change `.firebaserc`.
+
 Private Android distribution for the Bollini app is handled through a rolling GitHub Release.
 
 Stable APK link:
