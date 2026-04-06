@@ -20,7 +20,7 @@ import { colors } from "../src/theme/colors";
 
 function AppNavigator() {
   const { isLoading, user } = useAuth();
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontsError] = useFonts({
     PlusJakartaSans_700Bold,
     PlusJakartaSans_800ExtraBold,
     InstrumentSans_400Regular,
@@ -49,7 +49,7 @@ function AppNavigator() {
     }
   }, [isAuthenticated, isLoading, pathname, router]);
 
-  if (isLoading || !fontsLoaded) {
+  if (isLoading || (!fontsLoaded && !fontsError)) {
     return (
       <View style={styles.loadingScreen}>
         <ActivityIndicator size="large" color={colors.coral} />

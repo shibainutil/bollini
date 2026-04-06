@@ -42,12 +42,28 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (nextUser) => {
-      setUser(nextUser);
+    const timeoutId = setTimeout(() => {
       setIsLoading(false);
-    });
+    }, 5000);
 
-    return unsubscribe;
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (nextUser) => {
+        clearTimeout(timeoutId);
+        setUser(nextUser);
+        setIsLoading(false);
+      },
+      () => {
+        clearTimeout(timeoutId);
+        setUser(null);
+        setIsLoading(false);
+      }
+    );
+
+    return () => {
+      clearTimeout(timeoutId);
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
