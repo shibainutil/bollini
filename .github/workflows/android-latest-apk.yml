@@ -43,6 +43,18 @@ jobs:
           java-version: 17
           cache: gradle
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Write Android SDK location
+        run: |
+          sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          if [ -z "$sdk_root" ]; then
+            echo "Android SDK root is not available on the runner"
+            exit 1
+          fi
+          printf 'sdk.dir=%s\n' "$sdk_root" > android/local.properties
+
       - name: Install dependencies
         run: npm install --no-fund --no-audit
 
