@@ -48,12 +48,24 @@ jobs:
 
       - name: Validate required Firebase secrets
         run: |
-          test -n "$EXPO_PUBLIC_FIREBASE_API_KEY"
-          test -n "$EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN"
-          test -n "$EXPO_PUBLIC_FIREBASE_PROJECT_ID"
-          test -n "$EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET"
-          test -n "$EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID"
-          test -n "$EXPO_PUBLIC_FIREBASE_APP_ID"
+          missing=0
+          for key in \
+            EXPO_PUBLIC_FIREBASE_API_KEY \
+            EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN \
+            EXPO_PUBLIC_FIREBASE_PROJECT_ID \
+            EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET \
+            EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID \
+            EXPO_PUBLIC_FIREBASE_APP_ID
+          do
+            if [ -z "$(printenv "$key")" ]; then
+              echo "Missing repository secret: $key"
+              missing=1
+            fi
+          done
+
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
 
       - name: Write Expo environment file
         run: |
