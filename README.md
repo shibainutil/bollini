@@ -41,7 +41,10 @@ Cross-platform Expo app for Android, iPhone, and web with real Firebase authenti
 ## Distribution
 
 - The GitHub repository link is a source code link, not an install link for Android users.
-- For private Android distribution, build an installable APK or internal app build and share that download link instead.
+- This repository now supports a rolling Android APK release through GitHub Actions.
+- Stable APK link: `https://github.com/shibainutil/bollini/releases/download/android-latest/bollini-latest.apk`
+- That link stays the same and is overwritten with the newest APK whenever `main` is pushed successfully.
+- Before the workflow can build the APK correctly, add the Firebase values as GitHub repository secrets with the same names as the `EXPO_PUBLIC_FIREBASE_*` environment variables.
 - After the first Android install, this app is configured for Expo over-the-air updates for JavaScript and bundled assets.
 - iPhone distribution still has to follow Apple's allowed channels such as TestFlight or managed enterprise distribution.
 
