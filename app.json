@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Bollini Daycare",
+    "slug": "bollini",
+    "version": "1.0.0",
+    "scheme": "bollini",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      "expo-router",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./bollini.png"
+    },
+    "android": {
+      "package": "com.anonymous.bollini",
+      "versionCode": 1
+    }
+  }
+}
