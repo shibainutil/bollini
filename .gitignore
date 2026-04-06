@@ -7,6 +7,9 @@ web-build/
 
 .env
 
+android-build.log
+android/.kotlin/
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
